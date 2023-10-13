@@ -53,7 +53,7 @@ public class SecurityConfig {
                 .cors(withDefaults())
                 .csrf(config -> config.disable())
                 .authorizeHttpRequests(auth -> {
-                    auth.requestMatchers("/authenticate", "/registerNewUser").permitAll();
+                    auth.requestMatchers("/authenticate", "/registerNewUser", "/getAllProducts", "/getProductDetailsById/{productId}").permitAll();
                     auth.anyRequest().authenticated();
                 })
 

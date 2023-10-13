@@ -2,6 +2,7 @@ package com.example.controller;
 
 import com.example.entity.UserEntity;
 import com.example.service.UserService;
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -14,9 +15,9 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping({"/registerNewUser"})
+    @PostMapping("/registerNewUser")
     public UserEntity registerNewUser(@RequestBody UserEntity userEntity){
-        return userService.registerNewUser(userEntity);
+     return userService.registerNewUser(userEntity);
     }
 
     @GetMapping("/forAdmin")

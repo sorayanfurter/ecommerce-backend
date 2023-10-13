@@ -19,6 +19,8 @@ import java.io.IOException;
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
 
+    public static String CURRENT_USER = "";
+
     @Autowired
     private JwtUtils jwtUtils;
     @Autowired
@@ -34,6 +36,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
             if(jwtUtils.isTokenValid(token)){
                 String username = jwtUtils.getUsernameFromToken(token);
+                CURRENT_USER = username;
                 UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 
                 UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username, null,

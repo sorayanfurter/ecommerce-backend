@@ -24,6 +24,8 @@ public class EcommerceApplication {
 
 	@Autowired
 	PasswordEncoder passwordEncoder;
+/*
+
 	@Bean
 	CommandLineRunner init(){
 		return args -> {
@@ -52,5 +54,5 @@ public class EcommerceApplication {
 			userRepository.save(userEntity2);
 
 		};
-	}
+	}*/
 }

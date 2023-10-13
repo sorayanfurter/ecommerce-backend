@@ -9,6 +9,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -19,16 +20,13 @@ import java.util.Set;
 @Table(name="user")
 public class UserEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @NotBlank
+    @Size(max=30)
+    private String username;
     @Email
     @NotBlank
     @Size(max=80)
     private String email;
-    @NotBlank
-    @Size(max=30)
-    private String username;
-
     @NotBlank
     private String firstname;
     @NotBlank
@@ -36,8 +34,7 @@ public class UserEntity {
     @NotBlank
     private String password;
     @ManyToMany(fetch = FetchType.EAGER, targetEntity = RoleEntity.class, cascade = CascadeType.PERSIST)
-    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))//Eager trae todos los roles que estan asociados a ese usuario, no uno por uno como lazy
+    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "username"), inverseJoinColumns = @JoinColumn(name = "role_id"))//Eager trae todos los roles que estan asociados a ese usuario, no uno por uno como lazy
     private Set<RoleEntity> roles;
-
 
 }
